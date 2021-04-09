@@ -1,20 +1,30 @@
-import Logo from '../../assets/logo/universe.png'
-import { useDataContext } from '../../context/dataContext'
-import "./Navigation.css"
+import Logo from "../../assets/logo/universe.png";
+import "./Navigation.css";
+import { NavLink } from "react-router-dom";
 
 export const Navigation = () => {
-    const {state:{route}, dispatch} = useDataContext()
-    return(
-        <div>
-            <div className="navigation">
-            <a href="/">
-            <img src={Logo} alt="logo"/></a>
-            <ul>
-                <li onClick={() => {dispatch({type: "GO_TO_VIDEOS"})}}><i class="fa fa-home"></i></li>
-                <li onClick={() => {dispatch({type: "GO_TO_PLAYLIST"})}}>Playlist</li>
-                <li><i class="fa fa-search"></i></li>
-            </ul>
-        </div>
-        </div>
-    )
-}
+  return (
+    <div>
+      <div className="navigation">
+        <a href="/">
+          <img src={Logo} alt="logo" />
+        </a>
+        <ul>
+          <li>
+            <NavLink to="/" activeStyle={{color: "var(--primary-color)"}}>
+              <i className="fa fa-home"></i>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/playlist" activeStyle={{color: "var(--primary-color)"}}>Playlist</NavLink>
+          </li>
+          <li>
+            <NavLink to="/liked-videos" activeStyle={{color: "var(--primary-color)"}}>
+            <i className="far fa-thumbs-up"></i>
+            </NavLink>
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
+};

@@ -1,24 +1,30 @@
-import { useDataContext } from "../../context/dataContext"
+import { useState } from "react";
+import { useDataContext } from "../../context/dataContext";
+import { SinglePlaylist } from "./SinglePlaylist/SinglePlaylist";
+import "./Playlist.css"
 
 export const Playlist = () => {
-    const {state:{playlist}, dispatch} = useDataContext()
-    return(
+  const [loadThisPlaylist, setLoadThisPlaylist] = useState({})
+  const {
+    state: { playlist },
+    dispatch,
+  } = useDataContext();
+  console.log(playlist);
+  return (
+    <div className="playlist-container">
+      <h2>Playlists</h2>
+      {playlist && (
         <div>
-        <h2>Liked Videos</h2>
-        <div className="list-container">
-        
-            {playlist.liked.map(item => {
-                return (
-                    <div
-                        key={item.id}
-                        className="card-container"
-                        onClick={() => dispatch({type: "CHANGE_ROUTE_TO_VIDEO_PAGE", payload: item})}>
-                        <img src={item.thumbnail} alt="thumbnail"/>
-                        <h3>{item.name}</h3>
-                    </div>
-                )
-            })}
+          <div className="list-container">
+            <ul className="list">
+              {playlist.map((each) => (
+                <li key={each.id} onClick={() => setLoadThisPlaylist(each)}><h3>{each.name}</h3></li>
+              ))}
+            </ul>
+          </div>
         </div>
-        </div>
-    )
-}
+      )}
+      <SinglePlaylist playlist={loadThisPlaylist}/>
+    </div>
+  );
+};
