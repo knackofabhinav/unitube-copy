@@ -5,10 +5,11 @@ export const SinglePlaylist = ({ playlist }) => {
   return (
     <div>
       {playlist.videos && (
-        <div className="list-container">
+        <div style={{ display: "flex", flexWrap: "wrap" }}>
           {playlist.videos.map((item) => {
             return (
-              <Link key={item.id}
+              <Link
+                key={item.id}
                 to={`/video/${item.id}`}
                 style={{ textDecoration: "none", color: "black" }}
               >
@@ -17,10 +18,13 @@ export const SinglePlaylist = ({ playlist }) => {
                   <h3>{item.name}</h3>
                   <button
                     className="btn primary outline"
-                    onClick={(e) =>
-                      {e.preventDefault()
-                      e.stopPropagation()
-                      dispatch({ type: "REMOVE_FROM_PLAYLIST", payload: {item, playlist} })
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      dispatch({
+                        type: "REMOVE_FROM_PLAYLIST",
+                        payload: { item, playlist },
+                      });
                     }}
                   >
                     Remove
