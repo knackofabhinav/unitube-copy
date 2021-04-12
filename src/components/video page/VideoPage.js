@@ -33,7 +33,7 @@ export const VideoPage = () => {
   };
 
   return (
-    <div>
+    <div style={{ display: "flex", padding: "0 2rem", width:"70vw" }}>
       {videoPage && (
         <div>
           <div className="videoWrapper">
@@ -41,35 +41,45 @@ export const VideoPage = () => {
               src={videoPage.url}
               title="YouTube video player"
               frameBorder="0"
-              width="700"
-              height="500"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-            ></iframe>
+            />
           </div>
+          <p className="video-title">{videoPage.name}</p>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div>
+              <p>{videoPage.views} views</p>
+              <p className="video-title">{videoPage.channel}</p>
+            </div>
+            <div style={{ padding: "0 2rem" }}>
+              <button
+                className="btn primary text"
+                onClick={() => addToLikedVideos(videoPage)}
+              >
+                {liked.find((item) => item.id === videoPage.id) ? (
+                  <i className="fas fa-thumbs-up"></i>
+                ) : (
+                  <i className="far fa-thumbs-up"></i>
+                )}
+                {videoPage.likes}
+              </button>
+              <button className="btn primary text">
+                <i class="far fa-thumbs-down"></i>
+                {videoPage.dislikes}
+              </button>
+              <button
+                className="btn primary text"
+                onClick={(item) => addToPlaylistHandler(item)}
+              >
+                <i className="fas fa-list"></i>
+              </button>
+            </div>
 
-          <h2>{videoPage.name}</h2>
-          <div>
-            <button
-              className="btn primary text"
-              onClick={() => addToLikedVideos(videoPage)}
-            >
-              {liked.find((item) => item.id === videoPage.id) ? (
-                <i className="fas fa-thumbs-up"></i>
-              ) : (
-                <i className="far fa-thumbs-up"></i>
-              )}
-            </button>
-            <button
-              className="btn primary text"
-              onClick={(item) => addToPlaylistHandler(item)}
-            >
-              <i className="fas fa-list"></i>
-            </button>
+            {/* TOAST CONTENT */}
             {showAddToPlaylistModal && (
               <AddToPlaylistModal
                 setShowAddToPlaylistModal={setShowAddToPlaylistModal}
-                video = {videoPage}
+                video={videoPage}
               />
             )}
             <div
@@ -82,14 +92,10 @@ export const VideoPage = () => {
               <p>Added to Liked Playlist !</p>
             </div>
           </div>
-          {/*
-                addToPlaylistToast && 
-                <div className="addToPlaylistToast">
-                    <h3>Add To Playlist</h3>
-                    <p>Liked Videos</p>
-                    <p>Create New Playlist</p>
-                </div>
-            */}
+          <div>
+            <h5>Description</h5>
+            <p>{videoPage.description}</p>
+          </div>
         </div>
       )}
     </div>

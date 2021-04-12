@@ -16,6 +16,11 @@ const reduce = (state, action) => {
         liked: Array.from(new Set([...state.liked, action.payload])),
         toast: true,
       };
+    case "REMOVE_FROM_LIKED":
+      return {
+        ...state,
+        liked: state.liked.filter(item => item.id !== action.payload.item.id)
+      }
     case "ADD_NEW_PLAYLIST":
       return {
         ...state,
@@ -76,57 +81,7 @@ const intialState = {
   videoPage: {},
   liked: [],
   saved: [],
-  playlist: [
-    {
-      id: uuidv4(),
-      name: "Hello World",
-      videos: [
-        {
-          id: 1,
-          name: "Haasil - Sunny Khan Durrani | Urdu Rap",
-          url: "https://www.youtube.com/embed/38t50grgWSQ",
-          thumbnail: "https://img.youtube.com/vi/38t50grgWSQ/maxresdefault.jpg",
-        },
-        {
-          id: 2,
-          name: "Umer Farooq - Patang (Official Audio)",
-          url: "https://www.youtube.com/embed/sWXK5Errxkk",
-          thumbnail: "https://img.youtube.com/vi/sWXK5Errxkk/maxresdefault.jpg",
-        },
-        {
-          id: 3,
-          name: "Old Bollywood Medley - Atif Aslam | Aesthetics اردو",
-          url: "https://www.youtube.com/embed/xzn-y00ygaY",
-          thumbnail: "https://img.youtube.com/vi/xzn-y00ygaY/hqdefault.jpg",
-        },
-      ],
-    },
-    {
-      id: uuidv4(),
-      name: "Vibes",
-      videos: [
-        {
-          id: 4,
-          name: "Umer Farooq - Keh Na (Official Video)",
-          url: "https://www.youtube.com/embed/or4fdMBOUBI",
-          thumbnail: "https://img.youtube.com/vi/or4fdMBOUBI/maxresdefault.jpg",
-        },
-        {
-          id: 5,
-          name: "Bharat Chauhan - Ghar [Official Music Video]",
-          url: "https://www.youtube.com/embed/e44meSqTkH0",
-          thumbnail: "https://img.youtube.com/vi/e44meSqTkH0/maxresdefault.jpg",
-        },
-        {
-          id: 6,
-          name:
-            "GUMAAN - Young Stunners | Talha Anjum | Talhah Yunus | Prod. By Jokhay (Official Music Video)",
-          url: "https://www.youtube.com/embed/jIQ0Dx-4peE",
-          thumbnail: "https://img.youtube.com/vi/jIQ0Dx-4peE/maxresdefault.jpg",
-        },
-      ],
-    },
-  ],
+  playlist: [],
   toast: false,
   addToPlaylistToast: false,
 };

@@ -11,16 +11,33 @@ export const Navigation = () => {
         </a>
         <ul>
           <li>
-            <NavLink to="/" activeStyle={{color: "var(--primary-color)"}}>
+            <NavLink to="/" activeStyle={{ color: "var(--primary-color)" }}>
               <i className="fa fa-home"></i>
             </NavLink>
           </li>
           <li>
-            <NavLink to="/playlist" activeStyle={{color: "var(--primary-color)"}}>Playlist</NavLink>
+            <NavLink
+              to="/liked-videos"
+              activeStyle={{ color: "var(--primary-color)" }}
+            >
+              <i className="far fa-thumbs-up"></i>
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/liked-videos" activeStyle={{color: "var(--primary-color)"}}>
-            <i className="far fa-thumbs-up"></i>
+            <NavLink
+              to="/playlist"
+              activeStyle={{ color: "var(--primary-color)" }}
+            >
+              Playlist
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink
+              to="/liked-videos"
+              activeStyle={{ color: "var(--primary-color)" }}
+            >
+              Login
             </NavLink>
           </li>
         </ul>

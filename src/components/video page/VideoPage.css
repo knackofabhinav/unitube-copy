@@ -2,8 +2,11 @@
     max-width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+}
+
+.video-title{
+    font-weight: bolder;
+    font-size: larger;
 }
 
 .text{
@@ -17,13 +20,16 @@
     right: 1rem;
 }
 
+iframe{
+    width: 70vw;
+    height: 70vh;
+}
 
 
 .addToPlaylistToast{
     position: absolute;
     top: 50%;
     left: 50%;
-    /* height: 10rem; */
     width: 10rem;
     background-color: white;
     display: flex;

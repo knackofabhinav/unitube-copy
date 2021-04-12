@@ -14,8 +14,8 @@ export const AddToPlaylistModal = ({ setShowAddToPlaylistModal, video }) => {
     dispatch({ type: "ADD_TO_THIS_PLAYLIST", payload: { video, playlist } });
   };
   return (
-    <div className="modal">
-      <div className="modal-container">
+    <div className="modal" >
+      <div className="modal-container" style={{maxWidth: "30rem"}}>
         <div className="modal-top">
           <h3>Add To Playlist</h3>
         </div>

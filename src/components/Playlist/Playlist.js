@@ -13,7 +13,6 @@ export const Playlist = () => {
   return (
     <div className="playlist-container">
       <div className="playlists">
-        <h2>Playlists</h2>
         {playlist && (
           <div>
             <div className="list-container">
@@ -30,6 +29,7 @@ export const Playlist = () => {
       </div>
       <div>
         <SinglePlaylist playlist={loadThisPlaylist} />
+        {playlist.length === 0 && <h1>You haven't created any playlist man 😕</h1>}
       </div>
     </div>
   );
