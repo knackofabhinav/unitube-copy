@@ -6,19 +6,19 @@ import reportWebVitals from "./reportWebVitals";
 import { setupMockServer } from "./api/server";
 import { DataProvider } from "./context/dataContext";
 import { BrowserRouter as Router } from "react-router-dom";
-import { AuthProvider } from "./context/authContext"
+import { AuthProvider } from "./context/authContext";
 
 setupMockServer();
 
 ReactDOM.render(
   <React.StrictMode>
-    <AuthProvider>
-      <DataProvider>
-        <Router>
+    <Router>
+      <AuthProvider>
+        <DataProvider>
           <App />
-        </Router>
-      </DataProvider>
-    </AuthProvider>
+        </DataProvider>
+      </AuthProvider>
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );
