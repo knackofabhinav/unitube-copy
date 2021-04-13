@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { useLogin } from "../../context/authContext";
 import "./Login.css";
-import {useLocation, useNavigate} from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const {login ,setLogin} = useLogin()
-  const {state} = useLocation()
-  const navigate = useNavigate()
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+  const { login, loginUserWithCredentials } = useLogin();
+  const { state } = useLocation();
+  const navigate = useNavigate();
   return (
     <div
       style={{ display: "flex", justifyContent: "center", marginTop: "10rem" }}
@@ -18,6 +20,7 @@ export const Login = () => {
             <span>@</span>
             <input
               type="username"
+              onChange={(e) => setUsername(e.target.value)}
               placeholder="Username"
               aria-label="Username"
             />
@@ -25,6 +28,7 @@ export const Login = () => {
           <div className="input-container">
             <input
               type={!showPassword && "password"}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
               aria-label="Password"
             />
@@ -37,10 +41,16 @@ export const Login = () => {
               {showPassword ? "Hide Password" : "Show Password"}
             </span>
           </div>
-          <button className="btn primary" type="button" onClick={() => {
-            setLogin(!login) 
-            navigate(state.from)
-            }}>{login ? "LogOut" : "LogIn"}</button>
+          <button
+            className="btn primary"
+            type="button"
+            onClick={() => {
+              loginUserWithCredentials(username, password);
+              // navigate(state?.from ? state.from : "/");
+            }}
+          >
+            {login ? "LogOut" : "LogIn"}
+          </button>
           <p>Forgot Password?</p>
           <button className="btn text">Sign Up</button>
         </form>
