@@ -15,6 +15,7 @@ export const VideoListing = () => {
           {videoListing.map((item) => {
             return (
               <Link
+              onClick={() => dispatch({type:"ADD_TO_HISTORY", payload:{item}})}
               key={item.id}
                 to={`/video/${item.id}`}
                 style={{ textDecoration: "none", color: "black" }}

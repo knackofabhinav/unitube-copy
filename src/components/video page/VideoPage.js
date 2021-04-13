@@ -6,7 +6,7 @@ import "./VideoPage.css";
 
 export const VideoPage = () => {
   const {
-    state: { liked, toast, videoListing },
+    state: { liked, toast, videoListing, watchLater },
     dispatch,
   } = useDataContext();
   const { videoId } = useParams();
@@ -24,16 +24,8 @@ export const VideoPage = () => {
     }, 3000);
   };
 
-  const addToPlaylist = () => {
-    dispatch({ type: "ADD_TO_PLAYLIST" });
-  };
-
-  const addToPlaylistHandler = (item) => {
-    setShowAddToPlaylistModal(() => !showAddToPlaylistModal);
-  };
-
   return (
-    <div style={{ display: "flex", padding: "0 2rem", width:"70vw" }}>
+    <div style={{ display: "flex", padding: "0 2rem", width: "70vw" }}>
       {videoPage && (
         <div>
           <div className="videoWrapper">
@@ -63,15 +55,21 @@ export const VideoPage = () => {
                 )}
                 {videoPage.likes}
               </button>
-              <button className="btn primary text">
-                <i class="far fa-thumbs-down"></i>
-                {videoPage.dislikes}
+              <button
+                className="btn primary text"
+                onClick={() =>
+                  setShowAddToPlaylistModal(() => !showAddToPlaylistModal)
+                }
+              >
+                <i className="fas fa-list"></i>
               </button>
               <button
                 className="btn primary text"
-                onClick={(item) => addToPlaylistHandler(item)}
+                onClick={() => {
+                  dispatch({ type: "ADD_TO_WATCH_LATER", payload: videoPage });
+                }}
               >
-                <i className="fas fa-list"></i>
+                Watch Later
               </button>
             </div>
 

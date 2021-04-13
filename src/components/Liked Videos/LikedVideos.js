@@ -1,7 +1,6 @@
 import { useDataContext } from "../../context/dataContext";
 import { Link } from "react-router-dom";
 import { VideoCard } from "../Video Listing/VideoCard";
-import { flushSync } from "react-dom";
 export const LikedVideo = () => {
   const {
     state: { liked },
@@ -13,7 +12,7 @@ export const LikedVideo = () => {
         <div className="list-container">
           {liked.map((item) => {
             return (
-              <div style={{display: "flex", flexDirection: "column"}}>
+              <div style={{ display: "flex", flexDirection: "column" }}>
                 <Link
                   key={item.id}
                   to={`/video/${item.id}`}
@@ -23,7 +22,7 @@ export const LikedVideo = () => {
                 </Link>
                 <button
                   className="btn outline primary"
-                  onClick={(item) =>
+                  onClick={() =>
                     dispatch({ type: "REMOVE_FROM_LIKED", payload: item })
                   }
                 >
@@ -36,7 +35,9 @@ export const LikedVideo = () => {
       )}
       {liked.length === 0 && (
         <div>
-          <h1 style={{textAlign: "center"}}>Seriously! You didnt liked Anything? 🙄</h1>
+          <h1 style={{ textAlign: "center" }}>
+            Seriously! You didnt liked Anything? 🙄
+          </h1>
         </div>
       )}
     </div>

@@ -1,17 +1,19 @@
 import Logo from "../../assets/logo/universe.png";
 import "./Navigation.css";
 import { NavLink } from "react-router-dom";
+import { useLogin } from "../../context/authContext";
 
 export const Navigation = () => {
+  const { login, setLogin } = useLogin();
   return (
     <div>
       <div className="navigation">
         <a href="/">
           <img src={Logo} alt="logo" />
         </a>
-        <ul>
+        <ul style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
           <li>
-            <NavLink to="/" activeStyle={{ color: "var(--primary-color)" }}>
+            <NavLink to="/" end activeStyle={{ color: "var(--primary-color)" }}>
               <i className="fa fa-home"></i>
             </NavLink>
           </li>
@@ -33,12 +35,22 @@ export const Navigation = () => {
           </li>
 
           <li>
-            <NavLink
-              to="/liked-videos"
-              activeStyle={{ color: "var(--primary-color)" }}
-            >
-              Login
-            </NavLink>
+            {login ? (
+              <button className="btn primary"
+                onClick={() => {
+                  setLogin(false);
+                }}
+              >
+                Logout
+              </button>
+            ) : (
+              <NavLink
+                to="/login"
+                activeStyle={{ color: "var(--primary-color)" }}
+              >
+                Login
+              </NavLink>
+            )}
           </li>
         </ul>
       </div>

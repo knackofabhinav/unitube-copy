@@ -8,8 +8,11 @@ import { SideBar } from "./components/Video Listing/SideBar";
 import { VideoListing } from "./components/Video Listing/VideoListing";
 import { VideoPage } from "./components/video page/VideoPage";
 import { WatchLater } from "./components/Watch Later/WatchLater";
-import { History } from "./components/History/History"
+import { History } from "./components/History/History";
 import { useDataContext } from "./context/dataContext";
+import { Login } from "./components/Login/Login";
+import { PrivateRoute } from "./components/PrivateRoute.jsx";
+import { SinglePlaylist } from "./components/Playlist/SinglePlaylist/SinglePlaylist";
 const axios = require("axios");
 
 function App() {
@@ -37,11 +40,13 @@ function App() {
         <Routes>
           <Route path="/" element={<VideoListing />} />
           <Route path="/video-page" element={<VideoPage />} />
-          <Route path="/playlist" element={<Playlist />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/video/:videoId" element={<VideoPage />} />
-          <Route path="/liked-videos" element={<LikedVideo />} />
-          <Route path="/watch-later" element={<WatchLater />} />
-          <Route path="/history" element={<History />} />
+          <PrivateRoute path="/playlist" element={<Playlist />} />
+          <PrivateRoute path="/playlist/:id" element={<SinglePlaylist />} />
+          <PrivateRoute path="/liked-videos" element={<LikedVideo />} />
+          <PrivateRoute path="/watch-later" element={<WatchLater />} />
+          <PrivateRoute path="/history" element={<History />} />
         </Routes>
       </div>
     </div>

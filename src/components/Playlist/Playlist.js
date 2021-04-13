@@ -1,26 +1,52 @@
-import { useState } from "react";
 import { useDataContext } from "../../context/dataContext";
-import { SinglePlaylist } from "./SinglePlaylist/SinglePlaylist";
 import "./Playlist.css";
+import { Link } from "react-router-dom";
 
 export const Playlist = () => {
-  const [loadThisPlaylist, setLoadThisPlaylist] = useState({});
   const {
-    state: { playlist },
+    state: { playlists },
     dispatch,
   } = useDataContext();
-  console.log(playlist);
+  console.log(playlists);
   return (
     <div className="playlist-container">
       <div className="playlists">
-        {playlist && (
+        {playlists && (
           <div>
             <div className="list-container">
               <ul className="list">
-                {playlist.map((each) => (
-                  <li key={each.id} onClick={() => setLoadThisPlaylist(each)} style={{display:"flex",minWidth:"20rem"}}>
-                    <h3>{each.name}</h3>
-                  </li>
+                {playlists.map((item) => (
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <Link
+                      style={{
+                        textDecoration: "none",
+                        color: "black",
+                        cursor: "pointer",
+                      }}
+                      to={`/playlist/${item.id}`}
+                    >
+                      <li
+                        key={item.id}
+                        onClick={() =>
+                          dispatch({
+                            type: "LOAD_THIS_PLAYLIST",
+                            payload: { item },
+                          })
+                        }
+                        style={{ display: "flex", minWidth: "20rem" }}
+                      >
+                        <h3>{item.name}</h3>
+                      </li>
+                    </Link>
+                    <button
+                    className="btn primary outline"
+                      onClick={() =>
+                        dispatch({ type: "DELETE_PLAYLIST", payload: item })
+                      }
+                    >
+                      Remove
+                    </button>
+                  </div>
                 ))}
               </ul>
             </div>
@@ -28,8 +54,9 @@ export const Playlist = () => {
         )}
       </div>
       <div>
-        <SinglePlaylist playlist={loadThisPlaylist} />
-        {playlist.length === 0 && <h1>You haven't created any playlist man 😕</h1>}
+        {playlists.length === 0 && (
+          <h1>You haven't created any playlist man 😕</h1>
+        )}
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import { useDataContext } from "../../../context/dataContext";
 import "./AddToPlaylistModal.css";
 export const AddToPlaylistModal = ({ setShowAddToPlaylistModal, video }) => {
   const {
-    state: { playlist },
+    state: { playlists },
     dispatch,
   } = useDataContext();
   const [newPlaylistInput, setNewPlaylistInput] = useState("");
@@ -14,14 +14,14 @@ export const AddToPlaylistModal = ({ setShowAddToPlaylistModal, video }) => {
     dispatch({ type: "ADD_TO_THIS_PLAYLIST", payload: { video, playlist } });
   };
   return (
-    <div className="modal" >
-      <div className="modal-container" style={{maxWidth: "30rem"}}>
+    <div className="modal">
+      <div className="modal-container" style={{ maxWidth: "30rem" }}>
         <div className="modal-top">
           <h3>Add To Playlist</h3>
         </div>
         <div className="modal-middle">
           <ul className="list">
-            {playlist.map((item) => (
+            {playlists.map((item) => (
               <li
                 style={{ display: "flex", justifyContent: "space-between" }}
                 key={item.id}
@@ -29,15 +29,19 @@ export const AddToPlaylistModal = ({ setShowAddToPlaylistModal, video }) => {
                 <p>{item.name}</p>
                 <button
                   className="btn primary"
-                  onClick={() => addToThisPlaylist(video, item)}
+                  onClick={() => {
+                    addToThisPlaylist(video, item);
+                  }}
                 >
-                  Add
+                  {item.videos.find((item) => item.id === video.id)
+                    ? "Added"
+                    : "Add"}
                 </button>
               </li>
             ))}
           </ul>
         </div>
-        <div class="input-container">
+        <div className="input-container">
           <input
             placeholder="New Playlist"
             onChange={(e) => setNewPlaylistInput(e.target.value)}

@@ -7,7 +7,8 @@ export function setupMockServer() {
         videos: [
           {
             id: 1,
-            name: "Is University Worth it Anymore? My HONEST advice on the state of Universities in 2020.",
+            name:
+              "Is University Worth it Anymore? My HONEST advice on the state of Universities in 2020.",
             channel: "James Jani",
             views: "336,415",
             likes: "17K",
@@ -78,7 +79,8 @@ export function setupMockServer() {
           },
           {
             id: 2,
-            name: "The Untold Truth About Money: How to Build Wealth From Nothing.",
+            name:
+              "The Untold Truth About Money: How to Build Wealth From Nothing.",
             channel: "James Jani",
             views: "6,221,587",
             likes: "398K",
@@ -100,7 +102,7 @@ export function setupMockServer() {
             views: "2,682,885",
             likes: "70K",
             dislikes: "982",
-            description:`Watch Full Episodes here... https://www.youtube.com/h3podcast​
+            description: `Watch Full Episodes here... https://www.youtube.com/h3podcast​
             Watch live every Tuesday and Friday... http://twitch.tv/h3h3productions​
             MERCH... http://h3h3shop.com​
             
@@ -118,7 +120,7 @@ export function setupMockServer() {
             views: "96,366",
             likes: "8.8K",
             dislikes: "152",
-            description:`Shwetabh Gangwar, author of the rudest book ever, talks about finding out and developing your own taste in reading books. A lot of people don't discover what they like to read personally but instead rely on popular books suggested by other people.`,
+            description: `Shwetabh Gangwar, author of the rudest book ever, talks about finding out and developing your own taste in reading books. A lot of people don't discover what they like to read personally but instead rely on popular books suggested by other people.`,
             duration: "5:11",
             url: "https://www.youtube.com/embed/ivMMVtwwVAs",
             thumbnail:
@@ -131,7 +133,7 @@ export function setupMockServer() {
             views: "783,334",
             likes: "28K",
             dislikes: "803",
-            description:`15 Books JORDAN PETERSON Thinks Everyone Should Read | THE BOOK CLUB
+            description: `15 Books JORDAN PETERSON Thinks Everyone Should Read | THE BOOK CLUB
             SUBSCRIBE to ALUX: https://www.youtube.com/channel/UCNjP...​
             15 Books TIM FERRISS Thinks You Should Read: https://youtu.be/9NXbcM4EKkQ​
             
@@ -187,7 +189,7 @@ export function setupMockServer() {
             views: "221,864",
             likes: "11K",
             dislikes: "96",
-            description:`Three useful lessons from one of my favorite productivity authors. Get a free trial of Skillshare here: https://skl.sh/thomasfrank12201​
+            description: `Three useful lessons from one of my favorite productivity authors. Get a free trial of Skillshare here: https://skl.sh/thomasfrank12201​
 
             Ad-free version on Nebula: https://thomasjfrank.com/nebula/​
             
@@ -240,7 +242,7 @@ export function setupMockServer() {
             views: "1,464,794",
             likes: "69K",
             dislikes: "590",
-            description:`Narrated by Shane Morris  
+            description: `Narrated by Shane Morris  
 
             Written by Regina Brett`,
             duration: "6:45",
@@ -255,7 +257,7 @@ export function setupMockServer() {
             views: "2,464,794",
             likes: "99K",
             dislikes: "1.1K",
-            description:`Our popular Stoicism series now available to consume in one sitting  
+            description: `Our popular Stoicism series now available to consume in one sitting  
 
             Powerful wisdom from Marcus Aurelius, Seneca and Epictetus 
             
@@ -272,7 +274,7 @@ export function setupMockServer() {
             views: "1,053,763",
             likes: "45K",
             dislikes: "259",
-            description:`In this episode of Book Club we're talking about Atomic Habits by James Clear. We look at the power of 1% change, the importance of adopting better systems rather than setting goals, the need to focus on identity rather than outcomes and, ultimately, how to build better habits through the 4 laws of behavioural change. Enjoy!
+            description: `In this episode of Book Club we're talking about Atomic Habits by James Clear. We look at the power of 1% change, the importance of adopting better systems rather than setting goals, the need to focus on identity rather than outcomes and, ultimately, how to build better habits through the 4 laws of behavioural change. Enjoy!
 
             📚 Atomic Habits by James Clear- https://geni.us/atomichabitsbook​
             📕 Book Club Episode 1 - What Makes People Successful? https://www.youtube.com/watch?v=RGbCR...​
@@ -325,7 +327,7 @@ export function setupMockServer() {
             views: "515,046",
             likes: "16K",
             dislikes: "292",
-            description:`Support the channel by getting The Psychology of Money by Morgan Housel here: https://amzn.to/3aTPV3a​ 
+            description: `Support the channel by getting The Psychology of Money by Morgan Housel here: https://amzn.to/3aTPV3a​ 
 
             As an Amazon Associate I earn from qualified purchases.
             
@@ -362,7 +364,7 @@ export function setupMockServer() {
             views: "947,322",
             likes: "35K",
             dislikes: "292",
-            description:`Read by Shane Morris
+            description: `Read by Shane Morris
             -
             Kahlil Gibran was the key figure in a Romantic movement that transformed Arabic literature in the first half of the twentieth century. 
             -
@@ -409,7 +411,7 @@ export function setupMockServer() {
             views: "683,322",
             likes: "41K",
             dislikes: "202",
-            description:`Read by Shane Morris
+            description: `Read by Shane Morris
             -
             Jalaluddin Rumi was an ancient Persian scholar and Sufi master. Today he is recognised as one of the greatest poets who ever lived, due in part to how his words seem to speak to the divine.
             
@@ -426,7 +428,7 @@ export function setupMockServer() {
             views: "6,683,322",
             likes: "241K",
             dislikes: "2.2K",
-            description:`Stop Wasting Time! This is Jordan Peterson's Ultimate Advice for Students, College Grads, and Everyone Alive!`,
+            description: `Stop Wasting Time! This is Jordan Peterson's Ultimate Advice for Students, College Grads, and Everyone Alive!`,
             duration: "15:19",
             url: "https://www.youtube.com/embed/wsNzAuYDgy0",
             thumbnail:
@@ -439,7 +441,7 @@ export function setupMockServer() {
             views: "683,322",
             likes: "41K",
             dislikes: "200",
-            description:`Stop Wasting Time! This is Jordan Peterson's Ultimate Advice for Students, College Grads, and Everyone Alive!`,
+            description: `Stop Wasting Time! This is Jordan Peterson's Ultimate Advice for Students, College Grads, and Everyone Alive!`,
             duration: "11:40",
             url: "https://www.youtube.com/embed/zlJdRN97DRI",
             thumbnail:
@@ -452,7 +454,7 @@ export function setupMockServer() {
             views: "5,783,322",
             likes: "141K",
             dislikes: "2.1K",
-            description:`What does it take to be the TOUGHEST MAN ALIVE? Watch this video to find out! 
+            description: `What does it take to be the TOUGHEST MAN ALIVE? Watch this video to find out! 
             Buy David Goggins Best-Selling Book: https://amzn.to/36IFLAe​
             
             David Goggins is a retired Navy SEAL, and accomplished ultra-endurance athlete. He is also the Guinness 24-hour pull-up world record holder with 4030 repetitions. There is a lot we can learn from this inspiring man.`,
@@ -468,7 +470,7 @@ export function setupMockServer() {
             views: "9,783,322",
             likes: "241K",
             dislikes: "2.1K",
-            description:`"You Want First Place Come Play With Me, You Want Second Place Go Somewhere Else." KOBE BRYANT. The Mindset Of A Winner.
+            description: `"You Want First Place Come Play With Me, You Want Second Place Go Somewhere Else." KOBE BRYANT. The Mindset Of A Winner.
             MAMBA MENTALITY book: https://amzn.to/2O5n9C1​
             Kobe's new book: https://amzn.to/2LLkAlC​
             
@@ -489,7 +491,7 @@ export function setupMockServer() {
             views: "1,783,322",
             likes: "57K",
             dislikes: "482",
-            description:`Read by Robert Frost
+            description: `Read by Robert Frost
             Music by Chris Coleman`,
             duration: "2:30",
             url: "https://www.youtube.com/embed/vrBHd41YqTc",
@@ -503,12 +505,12 @@ export function setupMockServer() {
             views: "2,784,398",
             likes: "57K",
             dislikes: "482",
-            description:`Sigmund Freud, the inventor of psychoanalysis, appreciated the many ways in which our minds are troubled and anxious. It isn't us in particular: it's the human condition. Find out more about how Freud thought in our 'Great Thinkers': https://goo.gl/toR8m8`,
+            description: `Sigmund Freud, the inventor of psychoanalysis, appreciated the many ways in which our minds are troubled and anxious. It isn't us in particular: it's the human condition. Find out more about how Freud thought in our 'Great Thinkers': https://goo.gl/toR8m8`,
             duration: "7:19",
             url: "https://www.youtube.com/embed/mQaqXK7z9LM",
             thumbnail:
               "https://img.youtube.com/vi/mQaqXK7z9LM/maxresdefault.jpg",
-          }
+          },
         ],
       }));
     },
