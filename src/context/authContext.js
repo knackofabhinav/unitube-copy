@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { fakeAuthApi } from "../api/fakeAuthApi.js";
 import { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
@@ -12,34 +11,18 @@ export const AuthProvider = ({ children }) => {
     loginStatus?.login && setLogin(true);
   }, []);
 
-  
-
-  const loginUserWithCredentials = async (username, password) => {
-    try {
-      const response = await fakeAuthApi(username, password);
-      if (response.success) {
-        setLogin(true);
-        localStorage?.setItem("login", JSON.stringify({ login: true }));
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const logoutUser = () => {
     setLogin(false);
     localStorage.removeItem("login");
     navigate("/");
   };
   return (
-    <AuthContext.Provider
-      value={{ login, loginUserWithCredentials, logoutUser }}
-    >
+    <AuthContext.Provider value={{ login, logoutUser, setLogin }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-export const useLogin = () => {
+export const useAuth = () => {
   return useContext(AuthContext);
 };

@@ -1,5 +1,6 @@
 import { useDataContext } from "../../context/dataContext";
 import { VideoCard } from "../Video Listing/VideoCard";
+import { Link } from "react-router-dom"
 
 export const History = () => {
   const {
@@ -25,7 +26,17 @@ export const History = () => {
       )}
       <div style={{display:"flex", flexWrap:"wrap"}}>
       {history.map((item) => {
-        return <VideoCard item={item} />;
+        return(
+            <div style={{ display: "flex", flexDirection: "column" }}>
+                <Link
+                  key={item.id}
+                  to={`/video/${item.id}`}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <VideoCard item={item} />
+                </Link>
+              </div>
+          )
       })}
       </div>
     </div>

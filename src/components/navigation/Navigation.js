@@ -1,17 +1,23 @@
 import Logo from "../../assets/logo/universe.png";
 import "./Navigation.css";
 import { NavLink } from "react-router-dom";
-import { useLogin } from "../../context/authContext";
+import { useAuth } from "../../context/authContext";
 
 export const Navigation = () => {
-  const { login, setLogin, logoutUser } = useLogin();
+  const { login, logoutUser } = useAuth();
   return (
     <div>
       <div className="navigation">
         <a href="/">
           <img src={Logo} alt="logo" />
         </a>
-        <ul style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+        <ul
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <li>
             <NavLink to="/" end activeStyle={{ color: "var(--primary-color)" }}>
               <i className="fa fa-home"></i>
@@ -36,9 +42,10 @@ export const Navigation = () => {
 
           <li>
             {login ? (
-              <button className="btn primary"
+              <button
+                className="btn primary"
                 onClick={() => {
-                  logoutUser()
+                  logoutUser();
                 }}
               >
                 Logout

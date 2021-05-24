@@ -11,9 +11,14 @@ import { WatchLater } from "./components/Watch Later/WatchLater";
 import { History } from "./components/History/History";
 import { useDataContext } from "./context/dataContext";
 import { Login } from "./components/Login/Login";
+import { SignUp } from "./pages/Sign Up/SignUp";
 import { PrivateRoute } from "./components/PrivateRoute.jsx";
 import { SinglePlaylist } from "./components/Playlist/SinglePlaylist/SinglePlaylist";
 const axios = require("axios");
+
+export const instance = axios.create({
+  baseURL: "http://localhost:3000/",
+});
 
 function App() {
   const { dispatch } = useDataContext();
@@ -21,7 +26,7 @@ function App() {
   useEffect(() => {
     (async () => {
       try {
-        const dataFromServer = await axios.get("/api/videos");
+        const dataFromServer = await instance.get("/videos");
         dispatch({
           type: "ADD_VIDEO_LIST_FROM_SERVER",
           payload: dataFromServer.data.videos,
@@ -30,17 +35,18 @@ function App() {
         console.log(error);
       }
     })();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="App">
       <Navigation />
-      <div style={{ display: "grid", gridTemplateColumns: "2fr 9fr" }}>
+      <div className="app-container">
         <SideBar />
         <Routes>
           <Route path="/" element={<VideoListing />} />
           <Route path="/video-page" element={<VideoPage />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/video/:videoId" element={<VideoPage />} />
           <PrivateRoute path="/playlist" element={<Playlist />} />
           <PrivateRoute path="/playlist/:id" element={<SinglePlaylist />} />

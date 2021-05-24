@@ -4,17 +4,17 @@
     justify-content: space-between;
     align-items: center;
     width: 20rem;
-    margin: 2rem;
+    margin: 1rem;
     cursor: pointer;
     max-width: 100%;
     transition: ease-in-out 0.5s;
 }
 
-.card-container:hover{
+.card-container:hover {
     box-shadow: 10px 5px 12px -4px rgba(141, 136, 136, 0.64);
 }
 
-.card-container>div{
+.card-container>div {
     position: relative;
 }
 
@@ -24,7 +24,7 @@
     object-fit: cover;
 }
 
-.timestamp{
+.timestamp {
     position: absolute;
     bottom: -1rem;
     right: 0.1rem;
@@ -33,13 +33,13 @@
     color: white;
 }
 
-.video-name{
+.video-name {
     padding: 0.1rem;
     margin: 0.1rem;
     font-weight: 700;
 }
 
-.channel-name{
+.channel-name {
     margin: 1rem;
     font-weight: 600;
 }

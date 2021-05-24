@@ -13,7 +13,7 @@ export const VideoPage = () => {
   const [showAddToPlaylistModal, setShowAddToPlaylistModal] = useState(false);
 
   const videoPageData = (videoListing, videoId) =>
-    videoListing.find((video) => video.id === Number(videoId));
+    videoListing.find((video) => video._id == videoId);
   const videoPage = videoPageData(videoListing, videoId);
 
   const addToLikedVideos = () => {
