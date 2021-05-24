@@ -1,19 +1,19 @@
 import { useEffect } from "react";
 import { Route, Routes } from "react-router";
 import "./App.css";
-import { LikedVideo } from "./components/Liked Videos/LikedVideos";
+import { LikedVideo } from "./pages/Liked Videos/LikedVideos";
 import { Navigation } from "./components/Navigation/Navigation";
-import { Playlist } from "./components/Playlist/Playlist";
-import { SideBar } from "./components/Video Listing/SideBar";
-import { VideoListing } from "./components/Video Listing/VideoListing";
-import { VideoPage } from "./components/video page/VideoPage";
-import { WatchLater } from "./components/Watch Later/WatchLater";
-import { History } from "./components/History/History";
+import { Playlist } from "./pages/Playlist/Playlist";
+import { SideBar } from "./components/SideBar/SideBar";
+import { VideoListing } from "./pages/Video Listing/VideoListing";
+import { VideoPage } from "./pages/Video Page/VideoPage";
+import { WatchLater } from "./pages/Watch Later/WatchLater";
+import { History } from "./pages/History/History";
 import { useDataContext } from "./context/dataContext";
-import { Login } from "./components/Login/Login";
+import { Login } from "./pages/Login/Login";
 import { SignUp } from "./pages/Sign Up/SignUp";
 import { PrivateRoute } from "./components/PrivateRoute.jsx";
-import { SinglePlaylist } from "./components/Playlist/SinglePlaylist/SinglePlaylist";
+import { SinglePlaylist } from "./pages/SinglePlaylist/SinglePlaylist";
 const axios = require("axios");
 
 export const instance = axios.create({

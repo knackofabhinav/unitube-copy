@@ -1,7 +1,7 @@
 import { useDataContext } from "../../context/dataContext";
 import "./VideoListing.css";
 import { Link } from "react-router-dom";
-import { VideoCard } from "./VideoCard";
+import { VideoCard } from "../../components/Video Card/VideoCard";
 export const VideoListing = () => {
   const {
     state: { videoListing },

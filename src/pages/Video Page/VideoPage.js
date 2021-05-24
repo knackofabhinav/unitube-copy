@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router";
 import { useDataContext } from "../../context/dataContext";
-import { AddToPlaylistModal } from "./AddToPlaylistModal/AddToPlaylistModal";
+import { AddToPlaylistModal } from "../../components/AddToPlaylistModal/AddToPlaylistModal";
 import "./VideoPage.css";
 
 export const VideoPage = () => {

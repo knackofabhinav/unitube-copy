@@ -1,17 +1,18 @@
 import { useDataContext } from "../../context/dataContext";
-import { VideoCard } from "../Video Listing/VideoCard";
-import {Link} from "react-router-dom"
-
-export const WatchLater = () => {
+import { Link } from "react-router-dom";
+import { VideoCard } from "../../components/Video Card/VideoCard";
+export const LikedVideo = () => {
   const {
-    state: { watchLater }, dispatch
+    state: { liked },
+    dispatch,
   } = useDataContext();
-  console.log(watchLater)
   return (
-    <div className="list-container">
-      {watchLater.map((item) => {
-          return(
-            <div style={{ display: "flex", flexDirection: "column" }}>
+    <div>
+      {liked && (
+        <div className="list-container">
+          {liked.map((item) => {
+            return (
+              <div style={{ display: "flex", flexDirection: "column" }}>
                 <Link
                   key={item.id}
                   to={`/video/${item.id}`}
@@ -22,20 +23,20 @@ export const WatchLater = () => {
                 <button
                   className="btn outline primary"
                   onClick={() =>
-                    dispatch({ type: "REMOVE_FROM_WATCH_LATER", payload: item })
+                    dispatch({ type: "REMOVE_FROM_LIKED", payload: item })
                   }
                 >
                   Remove
                 </button>
               </div>
-          )
-      }
-      
+            );
+          })}
+        </div>
       )}
-      {watchLater.length === 0 && (
+      {liked.length === 0 && (
         <div>
-          <h1 style={{display:"block",textAlign: "center" }}>
-            Seems Like You Have Already Watched Everything 😏
+          <h1 style={{ textAlign: "center" }}>
+            Seriously! You didnt liked Anything? 🙄
           </h1>
         </div>
       )}

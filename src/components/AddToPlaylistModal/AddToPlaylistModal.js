@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDataContext } from "../../../context/dataContext";
+import { useDataContext } from "../../context/dataContext";
 import "./AddToPlaylistModal.css";
 export const AddToPlaylistModal = ({ setShowAddToPlaylistModal, video }) => {
   const {
