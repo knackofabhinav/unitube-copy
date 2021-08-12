@@ -1,9 +1,9 @@
-.playlist-container{
+.playlist-container {
     display: grid;
-    grid-template-rows:1fr 5fr ;
+    grid-template-rows: 1fr 5fr;
 }
 
-.playlists{
+.playlists {
     width: 30rem;
 }
 
@@ -12,9 +12,10 @@
     /* For desktop: */
     .playlist-container {
         display: flex;
+        min-height: 100vh
     }
 
-    .playlists{
+    .playlists {
         display: flex;
         flex-direction: column;
         align-items: center;

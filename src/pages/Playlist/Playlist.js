@@ -39,7 +39,7 @@ export const Playlist = () => {
                       </li>
                     </Link>
                     <button
-                    className="btn primary outline"
+                      className="btn primary outline"
                       onClick={() =>
                         dispatch({ type: "DELETE_PLAYLIST", payload: item })
                       }

@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 
 export const Navigation = () => {
-  const { login, logoutUser } = useAuth();
+  const { isLoggedIn, logout } = useAuth();
   return (
     <div>
       <div className="navigation">
@@ -41,11 +41,11 @@ export const Navigation = () => {
           </li>
 
           <li>
-            {login ? (
+            {isLoggedIn ? (
               <button
                 className="btn primary"
                 onClick={() => {
-                  logoutUser();
+                  logout();
                 }}
               >
                 Logout

@@ -1,43 +1,64 @@
 import { useDataContext } from "../../context/dataContext";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { VideoCard } from "../../components/Video Card/VideoCard";
+import { instance } from "../../instance";
+
 export const LikedVideo = () => {
   const {
     state: { liked },
     dispatch,
   } = useDataContext();
+
+  const removeLiked = async (item) => {
+    try {
+      const res = await instance.delete(`/liked/${item._id}`);
+      if (res.data.success === true) {
+        toast.success("Removed Successfully");
+        return dispatch({
+          type: "UPDATE_LIKED",
+          payload: res.data.likedVideos,
+        });
+      }
+      return dispatch({ type: "UPDATE_LIKED", payload: res.data.LikedVideos });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div>
+      {liked.length === 0 && (
+        <div>
+          <h1 style={{ textAlign: "center" }}>
+            Seriously! You didnt liked Anything? 🙄
+          </h1>
+        </div>
+      )}
       {liked && (
         <div className="list-container">
           {liked.map((item) => {
             return (
-              <div style={{ display: "flex", flexDirection: "column" }}>
+              <div
+                key={item._id}
+                style={{ display: "flex", flexDirection: "column" }}
+              >
                 <Link
-                  key={item.id}
-                  to={`/video/${item.id}`}
+                  key={item._id}
+                  to={`/video/${item._id}`}
                   style={{ textDecoration: "none", color: "black" }}
                 >
                   <VideoCard item={item} />
                 </Link>
                 <button
                   className="btn outline primary"
-                  onClick={() =>
-                    dispatch({ type: "REMOVE_FROM_LIKED", payload: item })
-                  }
+                  onClick={() => removeLiked(item)}
                 >
                   Remove
                 </button>
               </div>
             );
           })}
-        </div>
-      )}
-      {liked.length === 0 && (
-        <div>
-          <h1 style={{ textAlign: "center" }}>
-            Seriously! You didnt liked Anything? 🙄
-          </h1>
         </div>
       )}
     </div>

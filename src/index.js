@@ -10,11 +10,11 @@ import { AuthProvider } from "./context/authContext";
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <AuthProvider>
-        <DataProvider>
+      <DataProvider>
+        <AuthProvider>
           <App />
-        </DataProvider>
-      </AuthProvider>
+        </AuthProvider>
+      </DataProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")

@@ -1,14 +1,27 @@
 import { useDataContext } from "../../context/dataContext";
 import { VideoCard } from "../../components/Video Card/VideoCard";
 import { Link } from "react-router-dom";
+import { instance } from "../../instance";
+import { toast } from "react-toastify";
 
 export const History = () => {
   const {
     state: { history },
     dispatch,
   } = useDataContext();
+
+  const clearHistory = async () => {
+    try {
+      const res = await instance.delete("history");
+      toast.success("Cleared History Successfully");
+      dispatch({ type: "UPDATE_HISTORY", payload: res.data.history });
+    } catch (err) {
+      toast.error("Failed to clear History.");
+      console.error(err);
+    }
+  };
   return (
-    <div>
+    <div style={{ minHeight: "100vh" }}>
       {history.length === 0 && (
         <h1 style={{ textAlign: "center" }}>
           You Haven't Watched Anything Boi!
@@ -16,10 +29,7 @@ export const History = () => {
       )}
       {history.length !== 0 && (
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <button
-            className="btn primary"
-            onClick={() => dispatch({ type: "CLEAR_HISTORY" })}
-          >
+          <button className="btn primary" onClick={() => clearHistory()}>
             Clear History
           </button>
         </div>

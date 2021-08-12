@@ -1,18 +1,39 @@
 import { useState } from "react";
 import { useDataContext } from "../../context/dataContext";
+import { instance } from "../../instance";
+import { toast } from "react-toastify";
 import "./AddToPlaylistModal.css";
-export const AddToPlaylistModal = ({ setShowAddToPlaylistModal, video }) => {
+export const AddToPlaylistModal = ({ setShowAddToPlaylistModal, videoId }) => {
   const {
     state: { playlists },
     dispatch,
   } = useDataContext();
   const [newPlaylistInput, setNewPlaylistInput] = useState("");
-  const addNewPlaylist = (newPlaylistInput) => {
-    dispatch({ type: "ADD_NEW_PLAYLIST", payload: newPlaylistInput });
+  const addNewPlaylist = async (playlistName) => {
+    if (playlistName.length > 0) {
+      try {
+        const res = await instance.post("playlists", { playlistName });
+        toast.success("New Playlist Created!");
+        dispatch({ type: "UPDATE_PLAYLISTS", payload: res.data.playlists });
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      toast.error("Please enter a playlist name");
+    }
   };
-  const addToThisPlaylist = (video, playlist) => {
-    dispatch({ type: "ADD_TO_THIS_PLAYLIST", payload: { video, playlist } });
+
+  const addToPlaylist = async (videoId, playlistId) => {
+    try {
+      const res = await instance.post(`playlists/${playlistId}`, { videoId });
+      toast.success("successfully added");
+      dispatch({ type: "UPDATE_PLAYLISTS", payload: res.data.playlists });
+    } catch (err) {
+      err.response.status === 409 && toast.info("Already in playlist.");
+      console.error(err);
+    }
   };
+
   return (
     <div className="modal">
       <div className="modal-container" style={{ maxWidth: "30rem" }}>
@@ -24,16 +45,16 @@ export const AddToPlaylistModal = ({ setShowAddToPlaylistModal, video }) => {
             {playlists.map((item) => (
               <li
                 style={{ display: "flex", justifyContent: "space-between" }}
-                key={item.id}
+                key={item._id}
               >
-                <p>{item.name}</p>
+                <p>{item.playlistName}</p>
                 <button
                   className="btn primary"
                   onClick={() => {
-                    addToThisPlaylist(video, item);
+                    addToPlaylist(videoId, item._id);
                   }}
                 >
-                  {item.videos.find((item) => item.id === video.id)
+                  {item.videos.some((item) => item._id === videoId)
                     ? "Added"
                     : "Add"}
                 </button>
