@@ -1,8 +1,8 @@
 import { useDataContext } from "../../context/dataContext";
 import { VideoCard } from "../../components/Video Card/VideoCard";
 import { Link } from "react-router-dom";
-import { instance } from "../../instance";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 export const WatchLater = () => {
   const {
@@ -13,7 +13,7 @@ export const WatchLater = () => {
 
   const removeFromWatchLater = async (videoId) => {
     try {
-      const res = await instance.delete(`/watch-later/${videoId}`);
+      const res = await axios.delete(`/watch-later/${videoId}`);
       toast.success("Successfully removed");
       dispatch({ type: "UPDATE_WATCHLATER", payload: res.data.watchLater });
     } catch (err) {

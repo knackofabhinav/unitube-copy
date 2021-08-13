@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useDataContext } from "../../context/dataContext";
-import { instance } from "../../instance";
 import { toast } from "react-toastify";
 import "./AddToPlaylistModal.css";
+import axios from "axios";
 export const AddToPlaylistModal = ({ setShowAddToPlaylistModal, videoId }) => {
   const {
     state: { playlists },
@@ -12,7 +12,7 @@ export const AddToPlaylistModal = ({ setShowAddToPlaylistModal, videoId }) => {
   const addNewPlaylist = async (playlistName) => {
     if (playlistName.length > 0) {
       try {
-        const res = await instance.post("playlists", { playlistName });
+        const res = await axios.post("playlists", { playlistName });
         toast.success("New Playlist Created!");
         dispatch({ type: "UPDATE_PLAYLISTS", payload: res.data.playlists });
       } catch (err) {
@@ -25,7 +25,7 @@ export const AddToPlaylistModal = ({ setShowAddToPlaylistModal, videoId }) => {
 
   const addToPlaylist = async (videoId, playlistId) => {
     try {
-      const res = await instance.post(`playlists/${playlistId}`, { videoId });
+      const res = await axios.post(`playlists/${playlistId}`, { videoId });
       toast.success("successfully added");
       dispatch({ type: "UPDATE_PLAYLISTS", payload: res.data.playlists });
     } catch (err) {

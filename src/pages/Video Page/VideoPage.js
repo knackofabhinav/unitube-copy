@@ -2,10 +2,9 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useDataContext } from "../../context/dataContext";
 import { AddToPlaylistModal } from "../../components/AddToPlaylistModal/AddToPlaylistModal";
-import { instance } from "../../instance";
-import axios from "axios";
 import "./VideoPage.css";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 export const VideoPage = () => {
   const {
@@ -21,7 +20,7 @@ export const VideoPage = () => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await instance.post("/history", { videoId });
+        const res = await axios.post("/history", { videoId });
         console.log(res);
         if (res.data.success) {
           return dispatch({
@@ -37,7 +36,7 @@ export const VideoPage = () => {
 
   const addToWatchLater = async (videoId) => {
     try {
-      const res = await instance.post("/watch-later", { videoId });
+      const res = await axios.post("/watch-later", { videoId });
       toast.success("Video Added");
       dispatch({
         type: "UPDATE_WATCHLATER",
@@ -51,29 +50,9 @@ export const VideoPage = () => {
     }
   };
 
-  // const addToLikedVideos = async (videoId) => {
-  //   try {
-  //     const res = await instance.post("/liked", {
-  //       videoId,
-  //     });
-  //     if (res.data.success === true) {
-  //       toast.success("Liked Successfully");
-  //       return dispatch({
-  //         type: "UPDATE_LIKED",
-  //         payload: res.data.likedVideos,
-  //       });
-  //     }
-  //     if (res.data.success === false) {
-  //       toast.info(res.data.message);
-  //     }
-  //   } catch (err) {
-  //     if (err.response.status === 403) toast.info("Please Login");
-  //     console.error(err);
-  //   }
-  // };
   const addToLikedVideos = async (videoId) => {
     try {
-      const res = await axios.post("http://localhost:3000/liked", {
+      const res = await axios.post("/liked", {
         videoId,
       });
       if (res.data.success === true) {

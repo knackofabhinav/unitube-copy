@@ -1,34 +1,48 @@
 import { Link } from "react-router-dom";
 import { useDataContext } from "../../context/dataContext";
 import { VideoCard } from "../../components/Video Card/VideoCard";
+import axios from "axios";
 export const SinglePlaylist = () => {
   const {
     state: { loadThisPlaylist: playlist },
     dispatch,
   } = useDataContext();
+  const removeVideoFromPlaylist = async (videoId, playlistId) => {
+    try {
+      const res = await axios.delete(`/playlists/${playlistId}/${videoId}`);
+      console.log(res.data);
+      dispatch({
+        type: "UPDATE_PLAYLISTS",
+        payload: res.data.playlists,
+      });
+      const updatedPlaylist = res.data.playlists.find(
+        (playlist) => playlist._id === playlistId
+      );
+      dispatch({ type: "UPDATE_CURRENT_PLAYLIST", payload: updatedPlaylist });
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div>
       {playlist.videos && (
         <div style={{ display: "flex", flexWrap: "wrap" }}>
-          {playlist.videos.map((item) => {
+          {playlist.videos.map((video) => {
             return (
               <div style={{ display: "flex", flexDirection: "column" }}>
                 <Link
-                  key={item.id}
-                  to={`/video/${item.id}`}
+                  key={video._id}
+                  to={`/video/${video._id}`}
                   style={{ textDecoration: "none", color: "black" }}
                 >
-                  <VideoCard item={item} />
+                  <VideoCard item={video} />
                 </Link>
                 <div style={{ display: "flex", justifyContent: "center" }}>
                   <button
                     className="btn primary outline"
-                    onClick={() => {
-                      dispatch({
-                        type: "REMOVE_FROM_PLAYLIST",
-                        payload: { item, playlist },
-                      });
-                    }}
+                    onClick={() =>
+                      removeVideoFromPlaylist(video._id, playlist._id)
+                    }
                   >
                     Remove
                   </button>

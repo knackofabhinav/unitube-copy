@@ -1,13 +1,25 @@
 import { useDataContext } from "../../context/dataContext";
 import "./Playlist.css";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 export const Playlist = () => {
   const {
     state: { playlists },
     dispatch,
   } = useDataContext();
-  console.log(playlists);
+
+  const deletePlaylist = async (playlistId) => {
+    try {
+      const res = await axios.delete(`/playlists/${playlistId}`);
+      dispatch({ type: "UPDATE_PLAYLISTS", payload: res.data.playlists });
+      toast.success("Playlist Deleted");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="playlist-container">
       <div className="playlists">
@@ -23,10 +35,10 @@ export const Playlist = () => {
                         color: "black",
                         cursor: "pointer",
                       }}
-                      to={`/playlist/${item.id}`}
+                      to={`/playlist/${item._id}`}
                     >
                       <li
-                        key={item.id}
+                        key={item._id}
                         onClick={() =>
                           dispatch({
                             type: "LOAD_THIS_PLAYLIST",
@@ -35,14 +47,12 @@ export const Playlist = () => {
                         }
                         style={{ display: "flex", minWidth: "20rem" }}
                       >
-                        <h3>{item.name}</h3>
+                        <h3>{item.playlistName}</h3>
                       </li>
                     </Link>
                     <button
                       className="btn primary outline"
-                      onClick={() =>
-                        dispatch({ type: "DELETE_PLAYLIST", payload: item })
-                      }
+                      onClick={() => deletePlaylist(item._id)}
                     >
                       Remove
                     </button>

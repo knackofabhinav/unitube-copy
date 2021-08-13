@@ -2,7 +2,7 @@ import { useDataContext } from "../../context/dataContext";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { VideoCard } from "../../components/Video Card/VideoCard";
-import { instance } from "../../instance";
+import axios from "axios";
 
 export const LikedVideo = () => {
   const {
@@ -12,7 +12,7 @@ export const LikedVideo = () => {
 
   const removeLiked = async (item) => {
     try {
-      const res = await instance.delete(`/liked/${item._id}`);
+      const res = await axios.delete(`/liked/${item._id}`);
       if (res.data.success === true) {
         toast.success("Removed Successfully");
         return dispatch({

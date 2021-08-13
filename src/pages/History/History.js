@@ -1,8 +1,8 @@
 import { useDataContext } from "../../context/dataContext";
 import { VideoCard } from "../../components/Video Card/VideoCard";
 import { Link } from "react-router-dom";
-import { instance } from "../../instance";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 export const History = () => {
   const {
@@ -12,7 +12,7 @@ export const History = () => {
 
   const clearHistory = async () => {
     try {
-      const res = await instance.delete("history");
+      const res = await axios.delete("history");
       toast.success("Cleared History Successfully");
       dispatch({ type: "UPDATE_HISTORY", payload: res.data.history });
     } catch (err) {

@@ -17,19 +17,7 @@ import { Login } from "./pages/Login/Login";
 import { SignUp } from "./pages/Sign Up/SignUp";
 import { PrivateRoute } from "./components/PrivateRoute.jsx";
 import { SinglePlaylist } from "./pages/SinglePlaylist/SinglePlaylist";
-import { instance } from "./instance";
-
-// (function () {
-//   const authToken = JSON.parse(localStorage.getItem("user"))?.authToken;
-//   if (authToken) {
-//     instance.defaults.headers.common["Authorization"] = authToken;
-//   } else {
-//     instance.defaults.headers.common["Authorization"] = null;
-//     /*if setting null does not remove `Authorization` header then try
-//         delete axios.defaults.headers.common['Authorization'];
-//       */
-//   }
-// })();
+import axios from "axios";
 
 function App() {
   const { dispatch } = useDataContext();
@@ -38,7 +26,7 @@ function App() {
   useEffect(() => {
     (async () => {
       try {
-        const dataFromServer = await instance.get("/videos");
+        const dataFromServer = await axios.get("/videos");
         dispatch({
           type: "ADD_VIDEO_LIST_FROM_SERVER",
           payload: dataFromServer.data.videos,
@@ -52,7 +40,7 @@ function App() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await instance.get("/authenticated-user");
+        const res = await axios.get("/authenticated-user");
         setIsLoggedIn(JSON.parse(localStorage.getItem("user")).isLoggedIn);
         dispatch({ type: "LOGGED_IN", payload: res.data.user });
       } catch (error) {

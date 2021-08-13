@@ -1,13 +1,13 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { instance } from "../instance";
 import { useDataContext } from "../context/dataContext";
-import { changeAPIHeader } from "../instance";
 import axios from "axios";
+import { setupAuthHeaders, initialAPIConfig } from "../api.config";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  initialAPIConfig();
   const localLoginStatus = !!JSON.parse(localStorage.getItem("user"))
     ?.isLoggedIn
     ? true
@@ -17,16 +17,9 @@ export const AuthProvider = ({ children }) => {
   const { dispatch } = useDataContext();
   const location = useLocation();
 
-  function setupAuthHeaders(token) {
-    if (token) {
-      return (axios.defaults.headers.common["Authorization"] = token);
-    }
-    delete axios.defaults.headers.common["Authorization"];
-  }
-
   const login = async (loginCredentials) => {
     try {
-      const response = await instance.post("/login", {
+      const response = await axios.post("http://localhost:3000/login", {
         username: loginCredentials.username,
         password: loginCredentials.password,
       });
@@ -62,7 +55,7 @@ export const AuthProvider = ({ children }) => {
 
   const signup = async (signupCredentials) => {
     try {
-      const res = await instance.post("/signup", signupCredentials);
+      const res = await axios.post("/signup", signupCredentials);
       console.log(res);
       if (res.status)
         toast.success("Account created successfully. Please Login.");
