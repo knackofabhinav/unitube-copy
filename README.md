@@ -1,6 +1,6 @@
 # UniTube- Video Library
 Video Library created using MERN stack with JWT token.
-![video-library.gif]("src/assets/VideoLibrary.gif")
+![video-library.gif](src/assets/VideoLibrary.gif)
 ## Features:
 - Login/Signup
 - State Management using Context API.
