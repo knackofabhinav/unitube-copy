@@ -11,7 +11,6 @@ export const SinglePlaylist = () => {
   const removeVideoFromPlaylist = async (videoId, playlistId) => {
     try {
       const res = await axios.delete(`/playlists/${playlistId}/${videoId}`);
-      console.log(res.data);
       dispatch({
         type: "UPDATE_PLAYLISTS",
         payload: res.data.playlists,
@@ -21,7 +20,7 @@ export const SinglePlaylist = () => {
       );
       dispatch({ type: "UPDATE_CURRENT_PLAYLIST", payload: updatedPlaylist });
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
   return (
@@ -42,7 +41,10 @@ export const SinglePlaylist = () => {
           >
             {playlist.videos.map((video) => {
               return (
-                <div style={{ display: "flex", flexDirection: "column" }}>
+                <div
+                  key={video._id}
+                  style={{ display: "flex", flexDirection: "column" }}
+                >
                   <Link
                     key={video._id}
                     to={`/video/${video._id}`}

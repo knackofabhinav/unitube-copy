@@ -41,8 +41,8 @@ export const History = () => {
           return (
             <div style={{ display: "flex" }}>
               <Link
-                key={item.id}
-                to={`/video/${item.id}`}
+                key={item._id}
+                to={`/video/${item._id}`}
                 style={{ textDecoration: "none", color: "black" }}
               >
                 <VideoCard item={item} />

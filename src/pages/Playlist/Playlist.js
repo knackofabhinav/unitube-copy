@@ -10,16 +10,13 @@ export const Playlist = () => {
     dispatch,
   } = useDataContext();
 
-  console.log(playlists);
-
   const deletePlaylist = async (playlistId) => {
     try {
       const res = await axios.delete(`/playlists/${playlistId}`);
-      console.log(res.data.playlists);
       dispatch({ type: "UPDATE_PLAYLISTS", payload: res.data.playlists });
       toast.success("Playlist Deleted");
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
@@ -32,6 +29,7 @@ export const Playlist = () => {
               <ul className="list">
                 {playlists.map((item) => (
                   <div
+                    key={item._id}
                     style={{
                       display: "flex",
                       width: "90%",

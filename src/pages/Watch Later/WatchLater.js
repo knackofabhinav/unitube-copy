@@ -9,7 +9,6 @@ export const WatchLater = () => {
     state: { watchLater },
     dispatch,
   } = useDataContext();
-  console.log(watchLater);
 
   const removeFromWatchLater = async (videoId) => {
     try {
@@ -18,7 +17,7 @@ export const WatchLater = () => {
       dispatch({ type: "UPDATE_WATCHLATER", payload: res.data.watchLater });
     } catch (err) {
       toast.info("Failed to remove.");
-      console.log(err);
+      console.error(err);
     }
   };
 

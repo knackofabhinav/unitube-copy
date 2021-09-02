@@ -48,6 +48,7 @@ export const AddToPlaylistModal = ({ setShowAddToPlaylistModal, videoId }) => {
             {playlists.length !== 0 ? (
               playlists.map((item) => (
                 <Link
+                  key={item._id}
                   style={{ textDecoration: "none" }}
                   to={`/playlist/${item._id}`}
                   onClick={(e) => {

@@ -22,7 +22,7 @@ export const LikedVideo = () => {
       }
       return dispatch({ type: "UPDATE_LIKED", payload: res.data.LikedVideos });
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 

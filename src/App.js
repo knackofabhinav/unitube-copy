@@ -32,7 +32,7 @@ function App() {
           payload: dataFromServer.data.videos,
         });
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     })();
   }, [dispatch]);
@@ -44,7 +44,7 @@ function App() {
         setIsLoggedIn(JSON.parse(localStorage.getItem("user")).isLoggedIn);
         dispatch({ type: "LOGGED_IN", payload: res.data.user });
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     })();
   }, [dispatch, setIsLoggedIn]);

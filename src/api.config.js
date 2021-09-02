@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const initialAPIConfig = () => {
-  axios.defaults.baseURL = "http://localhost:3000/";
+  axios.defaults.baseURL = "https://unitube-server.herokuapp.com/";
   axios.defaults.headers.common["Authorization"] = JSON.parse(
     localStorage.getItem("user")
   )?.authToken;

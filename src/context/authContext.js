@@ -56,12 +56,11 @@ export const AuthProvider = ({ children }) => {
   const signup = async (signupCredentials) => {
     try {
       const res = await axios.post("/signup", signupCredentials);
-      console.log(res);
       if (res.status)
         toast.success("Account created successfully. Please Login.");
     } catch (err) {
       if (err.response.status === 409) toast.error(err.response.data.message);
-      console.log(err.response);
+      console.error(err.response);
     }
   };
 
