@@ -7,8 +7,8 @@ export const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { login } = useAuth();
   const [loginCredentials, setLoginCredentials] = useState({
-    username: "",
-    password: "",
+    username: "admin",
+    password: "admin",
   });
 
   return (

@@ -45,8 +45,10 @@ export const WatchLater = () => {
       })}
       {watchLater.length === 0 && (
         <div>
-          <h1 style={{ display: "block", textAlign: "center" }}>
-            Seems Like You Have Already Watched Everything 😏
+          <h1
+            style={{ color: "#cecece", display: "block", textAlign: "center" }}
+          >
+            Your watch later is Empty.
           </h1>
         </div>
       )}

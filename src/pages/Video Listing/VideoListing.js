@@ -1,5 +1,6 @@
 import { useDataContext } from "../../context/dataContext";
 import "./VideoListing.css";
+import loading from "../../assets/loading.svg";
 import { Link } from "react-router-dom";
 import { VideoCard } from "../../components/Video Card/VideoCard";
 export const VideoListing = () => {
@@ -9,7 +10,7 @@ export const VideoListing = () => {
   } = useDataContext();
   return (
     <div>
-      {videoListing && (
+      {videoListing.length > 0 ? (
         <div className="list-container">
           {videoListing.map((item) => {
             return (
@@ -25,6 +26,18 @@ export const VideoListing = () => {
               </Link>
             );
           })}
+        </div>
+      ) : (
+        //TODO: Add Loading Animation here
+        <div
+          style={{
+            height: "100vh",
+
+            justifyContent: "center",
+            display: "flex",
+          }}
+        >
+          <img style={{ width: "50%" }} src={loading} alt="Loading" />
         </div>
       )}
     </div>

@@ -23,8 +23,8 @@ export const History = () => {
   return (
     <div style={{ minHeight: "100vh" }}>
       {history.length === 0 && (
-        <h1 style={{ textAlign: "center" }}>
-          You Haven't Watched Anything Boi!
+        <h1 style={{ color: "#cecece", textAlign: "center" }}>
+          Your history is empty.
         </h1>
       )}
       {history.length !== 0 && (
@@ -34,10 +34,12 @@ export const History = () => {
           </button>
         </div>
       )}
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
+      <div
+        style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+      >
         {history.map((item) => {
           return (
-            <div style={{ display: "flex", flexDirection: "column" }}>
+            <div style={{ display: "flex" }}>
               <Link
                 key={item.id}
                 to={`/video/${item.id}`}

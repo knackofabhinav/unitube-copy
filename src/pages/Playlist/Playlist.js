@@ -10,9 +10,12 @@ export const Playlist = () => {
     dispatch,
   } = useDataContext();
 
+  console.log(playlists);
+
   const deletePlaylist = async (playlistId) => {
     try {
       const res = await axios.delete(`/playlists/${playlistId}`);
+      console.log(res.data.playlists);
       dispatch({ type: "UPDATE_PLAYLISTS", payload: res.data.playlists });
       toast.success("Playlist Deleted");
     } catch (err) {
@@ -21,20 +24,37 @@ export const Playlist = () => {
   };
 
   return (
-    <div className="playlist-container">
-      <div className="playlists">
-        {playlists && (
+    <div>
+      <div>
+        {playlists.length !== 0 ? (
           <div>
-            <div className="list-container">
+            <div>
               <ul className="list">
                 {playlists.map((item) => (
-                  <div style={{ display: "flex", justifyContent: "center" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      width: "90%",
+                      justifyContent: "center",
+                      padding: "1rem",
+                      borderBottom: "1px solid #cecece",
+                    }}
+                  >
                     <Link
                       style={{
                         textDecoration: "none",
                         color: "black",
                         cursor: "pointer",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        width: "100%",
                       }}
+                      onClick={() =>
+                        dispatch({
+                          type: "LOAD_THIS_PLAYLIST",
+                          payload: { item },
+                        })
+                      }
                       to={`/playlist/${item._id}`}
                     >
                       <li
@@ -45,14 +65,16 @@ export const Playlist = () => {
                             payload: { item },
                           })
                         }
-                        style={{ display: "flex", minWidth: "20rem" }}
+                        style={{ maxWidth: "100%" }}
                       >
                         <h3>{item.playlistName}</h3>
                       </li>
                     </Link>
                     <button
                       className="btn primary outline"
-                      onClick={() => deletePlaylist(item._id)}
+                      onClick={() => {
+                        deletePlaylist(item._id);
+                      }}
                     >
                       Remove
                     </button>
@@ -61,11 +83,10 @@ export const Playlist = () => {
               </ul>
             </div>
           </div>
-        )}
-      </div>
-      <div>
-        {playlists.length === 0 && (
-          <h1>You haven't created any playlist man 😕</h1>
+        ) : (
+          <h1 style={{ color: "#cecece", textAlign: "center" }}>
+            You haven't created any playlist yet. 😕
+          </h1>
         )}
       </div>
     </div>

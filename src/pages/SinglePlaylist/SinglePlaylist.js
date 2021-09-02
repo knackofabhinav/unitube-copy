@@ -7,6 +7,7 @@ export const SinglePlaylist = () => {
     state: { loadThisPlaylist: playlist },
     dispatch,
   } = useDataContext();
+
   const removeVideoFromPlaylist = async (videoId, playlistId) => {
     try {
       const res = await axios.delete(`/playlists/${playlistId}/${videoId}`);
@@ -26,34 +27,49 @@ export const SinglePlaylist = () => {
   return (
     <div>
       {playlist.videos && (
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
-          {playlist.videos.map((video) => {
-            return (
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                <Link
-                  key={video._id}
-                  to={`/video/${video._id}`}
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  <VideoCard item={video} />
-                </Link>
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                  <button
-                    className="btn primary outline"
-                    onClick={() =>
-                      removeVideoFromPlaylist(video._id, playlist._id)
-                    }
+        <div
+          style={{ display: "flex", flexDirection: "column", flexWrap: "wrap" }}
+        >
+          <div style={{ textAlign: "center" }}>
+            <h1>{playlist.playlistName}</h1>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            {playlist.videos.map((video) => {
+              return (
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <Link
+                    key={video._id}
+                    to={`/video/${video._id}`}
+                    style={{ textDecoration: "none", color: "black" }}
                   >
-                    Remove
-                  </button>
+                    <VideoCard item={video} />
+                  </Link>
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <button
+                      className="btn primary outline"
+                      onClick={() =>
+                        removeVideoFromPlaylist(video._id, playlist._id)
+                      }
+                    >
+                      Remove
+                    </button>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       )}
       {playlist.videos.length === 0 && (
-        <h1 style={{ textAlign: "center" }}>Your Playlist is Empty</h1>
+        <h2 style={{ textAlign: "center", color: "#cecece" }}>
+          Your Playlist is Empty
+        </h2>
       )}
     </div>
   );

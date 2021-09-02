@@ -21,7 +21,6 @@ export const VideoPage = () => {
     (async () => {
       try {
         const res = await axios.post("/history", { videoId });
-        console.log(res);
         if (res.data.success) {
           return dispatch({
             type: "UPDATE_HISTORY",

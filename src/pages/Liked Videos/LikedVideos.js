@@ -30,8 +30,8 @@ export const LikedVideo = () => {
     <div>
       {liked.length === 0 && (
         <div>
-          <h1 style={{ textAlign: "center" }}>
-            Seriously! You didnt liked Anything? 🙄
+          <h1 style={{ color: "#cecece", textAlign: "center" }}>
+            You didn't liked Anything yet! 🙄
           </h1>
         </div>
       )}

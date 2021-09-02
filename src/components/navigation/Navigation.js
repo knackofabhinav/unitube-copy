@@ -33,10 +33,19 @@ export const Navigation = () => {
           </li>
           <li>
             <NavLink
+              to="/history"
+              activeStyle={{ color: "var(--primary-color)" }}
+            >
+              <i class="fa fa-history" aria-hidden="true"></i>
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink
               to="/playlist"
               activeStyle={{ color: "var(--primary-color)" }}
             >
-              Playlist
+              Playlists
             </NavLink>
           </li>
 
