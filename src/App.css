@@ -1,0 +1,12 @@
+@import 'https://universeui.netlify.app/components.css';
+
+.app-container {
+  display: grid;
+  grid-template-columns: 2fr 8fr;
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    grid-template-columns: 1fr;
+  }
+}

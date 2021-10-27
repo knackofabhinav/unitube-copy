@@ -1,0 +1,29 @@
+.sidenav-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 90vh;
+    border-right: 1px solid black;
+}
+
+.selected {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.navlink {
+    text-decoration: none;
+    font-size: larger;
+    margin: 1rem;
+    color: black;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+
+    .sidenav-container {
+        display: none;
+    }
+
+}
